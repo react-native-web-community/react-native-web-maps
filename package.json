@@ -1,0 +1,36 @@
+{
+  "name": "react-native-web-maps",
+  "version": "0.0.0",
+  "description": "React Native for Web implementation of react-native-maps",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:react-native-web-community/react-native-web-maps.git"
+  },
+  "author": {
+    "name": "aurorem",
+    "email": "aurorem@bam.tech",
+    "url": "https://github.com/aurorem"
+  },
+  "license": "{license, don't forget to add a LICENSE file at the root of the project}",
+  "keywords": ["react-native", "react-native-web", "react-native-web-maps"],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "babel": {
+    "presets": ["react-native"]
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-react-native": "^4.0.0",
+    "prettier": "^1.7.3",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-native-web": "^0.1.1",
+    "webpack": "^3.6.0"
+  },
+  "peerDependencies": {
+    "react-native-web": "*"
+  }
+}
