@@ -32,5 +32,8 @@
   },
   "peerDependencies": {
     "react-native-web": "*"
+  },
+  "dependencies": {
+    "react-google-maps": "^7.3.0"
   }
 }
