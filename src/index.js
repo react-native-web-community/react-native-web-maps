@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 
 const GoogleMapContainer = withGoogleMap(props => <GoogleMap {...props} ref={props.handleMapMounted} />);
@@ -14,12 +14,12 @@ export default class RNMaps extends Component {
   render() {
     if (!this.state.center)
       return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={styles.container}>
           <ActivityIndicator />
         </View>
       );
     return (
-      <View style={{ height: '100vh' }}>
+      <View style={styles.container}>
         <GoogleMapContainer
           handleMapMounted={this.handleMapMounted}
           containerElement={<div style={{ height: '100%' }} />}
@@ -31,3 +31,9 @@ export default class RNMaps extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    height: '100vh',
+  },
+});
