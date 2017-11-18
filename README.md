@@ -17,11 +17,10 @@ resolve: {
 ```
 
 ## Usage
-{ add link to the original module's docs }
+[Airbnb/react-native-maps](https://github.com/airbnb/react-native-maps) is the original module.
 
-{ if only some props are supported, list them }
-
-{ if there are web-specific props, list them }
+To use this maps, you need to have a [Google Maps Javascript API key](https://developers.google.com/maps/documentation/javascript/get-api-key).
+Then add it to your `index.html`, as done in the [preview-head](./docs/.storybook/preview-head.html) file.
 
 ## Examples
 See the [storybook](https://react-native-web-community.github.io/react-native-web-maps/storybook).
