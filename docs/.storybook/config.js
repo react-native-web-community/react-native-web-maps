@@ -1,8 +1,5 @@
 import { setOptions } from '@storybook/addon-options';
-import { configure, addDecorator } from '@storybook/react';
-import centered from './decorator-centered';
-
-addDecorator(centered);
+import { configure } from '@storybook/react';
 
 setOptions({
   name: 'Maps',

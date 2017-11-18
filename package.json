@@ -14,9 +14,7 @@
   },
   "license": "{license, don't forget to add a LICENSE file at the root of the project}",
   "keywords": ["react-native", "react-native-web", "react-native-web-maps"],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": { "test": "echo \"Error: no test specified\" && exit 1" },
   "babel": {
     "presets": ["react-native"]
   },
