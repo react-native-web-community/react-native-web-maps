@@ -5,9 +5,10 @@ import { withGoogleMap, GoogleMap } from 'react-google-maps';
 const GoogleMapContainer = withGoogleMap(props => <GoogleMap {...props} ref={props.handleMapMounted} />);
 
 export default class RNMaps extends Component {
-  state = {
-    center: { lat: 48.864716, lng: 2.349014 },
-  };
+  constructor(props) {
+    super(props);
+    this.state = { center: { lat: props.initialCenter.lat, lng: props.initialCenter.lng } };
+  }
 
   handleMapMounted = map => (this.map = map);
 
@@ -25,7 +26,7 @@ export default class RNMaps extends Component {
           containerElement={<div style={{ height: '100%' }} />}
           mapElement={<div style={{ height: '100%' }} />}
           center={this.state.center}
-          defaultZoom={15}
+          defaultZoom={this.props.defaultZoom || 15}
         />
       </View>
     );
