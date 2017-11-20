@@ -22,7 +22,7 @@ module.exports = (storybookBaseConfig, configType) => {
 
   storybookBaseConfig.resolve.alias = {
     'react-native': 'react-native-web',
-    'react-native-web-maps': path.join(__dirname, '../../src/'),
+    'react-native-maps': path.join(__dirname, '../../src/'),
   };
 
   return storybookBaseConfig;
