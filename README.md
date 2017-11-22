@@ -37,7 +37,7 @@ See the original [documentation](https://github.com/airbnb/react-native-maps).
 `MapView` is the only component API supported for now. You can set the `initialCenter` and the `defaultZoom` with the props.
 
 ## Examples
-See the [storybook](https://react-native-web-community.github.io/react-native-web-maps/storybook).
+See the [storybook](https://react-native-web-community.github.io/react-native-web-maps/storybook/index.html).
 
 ## Contributing
 PRs are welcome!
