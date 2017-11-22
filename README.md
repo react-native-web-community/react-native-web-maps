@@ -34,7 +34,13 @@ import MapView from 'react-native-maps';
 ```
 See the original [documentation](https://github.com/airbnb/react-native-maps).
 
-`MapView` is the only component API supported for now. You can set the `initialCenter` and the `defaultZoom` with the props.
+`MapView` is the only component API supported for now.
+The supported props are:
+- region
+The supported events are:
+- onRegionChange
+- onRegionChangeComplete
+
 
 ## Examples
 See the [storybook](https://react-native-web-community.github.io/react-native-web-maps/storybook/index.html).
