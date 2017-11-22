@@ -4,7 +4,7 @@
 ## Getting started
 `$ npm install react-native-web-maps --save`
 
-To implement `react-native-maps` you're using the `react-google-maps` package:
+To implement `react-native-web-maps` we're using the `react-google-maps` package:
 
 `$ npm install react-google-maps --save`
 
@@ -32,7 +32,7 @@ Then, you should add this script to your index.html:
 ``` javascript
 import MapView from 'react-native-maps';
 ```
-See the original [documentation](https://github.com/tomchentw/react-google-maps).
+See the original [documentation](https://github.com/airbnb/react-native-maps).
 
 `MapView` is the only component API supported for now. You can set the `initialCenter` and the `defaultZoom` with the props.
 
