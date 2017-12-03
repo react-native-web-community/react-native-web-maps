@@ -34,12 +34,19 @@ import MapView from 'react-native-maps';
 ```
 See the original [documentation](https://github.com/airbnb/react-native-maps).
 
-`MapView` is the only component API supported for now.
-The supported props are:
-- region
-The supported events are:
-- onRegionChange
-- onRegionChangeComplete
+The supported components are `MapView` and `MapView.Marker`.
+
+`MapView`:
+- The supported props are:
+    - `region`
+- The supported events are:
+    - `onRegionChange`
+    - `onRegionChangeComplete`
+
+`MapView.Marker`:
+- The supported props are:
+    - `title`
+    - `coordinate`
 
 
 ## Examples
