@@ -1,6 +1,6 @@
 {
   "name": "react-native-web-maps",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "React Native for Web implementation of react-native-maps",
   "main": "src/index.js",
   "repository": {
@@ -13,10 +13,18 @@
     "url": "https://github.com/aurorem"
   },
   "license": "MIT",
-  "keywords": ["react-native", "react-native-web", "react-native-web-maps"],
-  "scripts": { "test": "echo \"Error: no test specified\" && exit 1" },
+  "keywords": [
+    "react-native",
+    "react-native-web",
+    "react-native-web-maps"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "babel": {
-    "presets": ["react-native"]
+    "presets": [
+      "react-native"
+    ]
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
