@@ -42,6 +42,7 @@ The supported components are `MapView` and `MapView.Marker`.
 - The supported events are:
     - `onRegionChange`
     - `onRegionChangeComplete`
+    - `onPress`
 
 `MapView.Marker`:
 - The supported props are:

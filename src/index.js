@@ -36,6 +36,7 @@ class MapView extends Component {
           onDragStart={!!this.props.onRegionChange && this.props.onRegionChange}
           onDragEnd={this.onDragEnd}
           defaultZoom={15}
+          onClick={this.props.onPress}
         >
           {this.props.children}
         </GoogleMapContainer>
