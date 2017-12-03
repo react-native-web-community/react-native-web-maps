@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
+import Marker from './Marker';
 
 const GoogleMapContainer = withGoogleMap(props => <GoogleMap {...props} ref={props.handleMapMounted} />);
 
@@ -35,11 +36,15 @@ class MapView extends Component {
           onDragStart={!!this.props.onRegionChange && this.props.onRegionChange}
           onDragEnd={this.onDragEnd}
           defaultZoom={15}
-        />
+        >
+          {this.props.children}
+        </GoogleMapContainer>
       </View>
     );
   }
 }
+
+MapView.Marker = Marker;
 
 const styles = StyleSheet.create({
   container: {
