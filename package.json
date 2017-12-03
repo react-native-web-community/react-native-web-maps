@@ -8,11 +8,11 @@
     "url": "git@github.com:react-native-web-community/react-native-web-maps.git"
   },
   "author": {
-    "name": "aurorem",
+    "name": "Aurore Malherbes",
     "email": "aurorem@bam.tech",
     "url": "https://github.com/aurorem"
   },
-  "license": "{license, don't forget to add a LICENSE file at the root of the project}",
+  "license": "MIT",
   "keywords": ["react-native", "react-native-web", "react-native-web-maps"],
   "scripts": { "test": "echo \"Error: no test specified\" && exit 1" },
   "babel": {
