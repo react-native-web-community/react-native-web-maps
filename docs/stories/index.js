@@ -22,6 +22,10 @@ storiesOf('MapView', module)
   ));
 storiesOf('Marker', module).add('basic', () => (
   <MapView region={{ latitude: 48.88, longitude: 2.32 }}>
-    <MapView.Marker title="BAM" coordinate={{ latitude: 48.8828463, longitude: 2.3229091 }} />
+    <MapView.Marker
+      title="BAM"
+      description="Shape the future of mobile with us"
+      coordinate={{ latitude: 48.8828463, longitude: 2.3229091 }}
+    />
   </MapView>
 ));

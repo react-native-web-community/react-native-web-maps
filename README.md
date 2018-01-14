@@ -47,6 +47,7 @@ The supported components are `MapView` and `MapView.Marker`.
 `MapView.Marker`:
 - The supported props are:
     - `title`
+    - `description`
     - `coordinate`
 
 
