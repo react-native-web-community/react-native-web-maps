@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import Marker from './Marker';
 
 const GoogleMapContainer = withGoogleMap(props => <GoogleMap {...props} ref={props.handleMapMounted} />);
 
-class MapView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { center: { lat: props.region.latitude, lng: props.region.longitude } };
-  }
-
+function calcZoom(region) {
+  if (!region.latitudeDelta || !region.longitudeDelta) return 13
+  const avgDelta = (region.longitudeDelta + region.latitudeDelta) / 2.0;
+  return Math.floor(1/avgDelta);
+}
+class MapView extends PureComponent {
   handleMapMounted = map => (this.map = map);
 
   onDragEnd = () => {
@@ -20,22 +20,27 @@ class MapView extends Component {
   };
 
   render() {
-    if (!this.state.center)
+    if (!this.props.region)
       return (
         <View style={styles.container}>
           <ActivityIndicator />
         </View>
       );
+    const center = { 
+      lat: this.props.region.latitude, 
+      lng: this.props.region.longitude 
+    };
+    const zoom = calcZoom(this.props.region);
     return (
       <View style={styles.container}>
         <GoogleMapContainer
           handleMapMounted={this.handleMapMounted}
           containerElement={<div style={{ height: '100%' }} />}
           mapElement={<div style={{ height: '100%' }} />}
-          center={this.state.center}
+          center={center}
           onDragStart={!!this.props.onRegionChange && this.props.onRegionChange}
           onDragEnd={this.onDragEnd}
-          defaultZoom={15}
+          zoom={zoom}
           onClick={this.props.onPress}
         >
           {this.props.children}
@@ -53,4 +58,5 @@ const styles = StyleSheet.create({
   },
 });
 
+export { Marker };
 export default MapView;
