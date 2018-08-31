@@ -1,16 +1,16 @@
 {
-  "name": "react-native-web-maps",
+  "name": "@blueeast/react-native-web-maps",
   "version": "0.1.0",
-  "description": "React Native for Web implementation of react-native-maps",
-  "main": "src/index.js",
+  "description": "React for Web implementation of react-native-maps",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:react-native-web-community/react-native-web-maps.git"
+    "url": "https://github.com/BlueEastCode/react-native-web-maps"
   },
   "author": {
-    "name": "Aurore Malherbes",
-    "email": "aurorem@bam.tech",
-    "url": "https://github.com/aurorem"
+    "name": "BlueEast Code",
+    "email": "",
+    "url": "https://github.com/BlueEastCode/react-native-web-maps"
   },
   "license": "MIT",
   "keywords": [
@@ -19,6 +19,7 @@
     "react-native-web-maps"
   ],
   "scripts": {
+    "build": "babel src --out-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "babel": {
@@ -27,6 +28,7 @@
     ]
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-react-native": "^4.0.0",
