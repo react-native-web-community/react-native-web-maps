@@ -12,6 +12,9 @@
     "email": "aurorem@bam.tech",
     "url": "https://github.com/aurorem"
   },
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "keywords": [
     "react-native",
