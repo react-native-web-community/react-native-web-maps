@@ -2,7 +2,8 @@
   "name": "react-native-web-maps",
   "version": "0.1.0",
   "description": "React Native for Web implementation of react-native-maps",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "main-es": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:react-native-web-community/react-native-web-maps.git"
@@ -19,6 +20,8 @@
     "react-native-web-maps"
   ],
   "scripts": {
+    "prepublish": "yarn build",
+    "build": "mkdir -p dist && babel src --out-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "babel": {
@@ -26,7 +29,13 @@
       "react-native"
     ]
   },
+  "files": [
+    "dist",
+    "src",
+    "yarn.lock"
+  ],
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-react-native": "^4.0.0",
