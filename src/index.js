@@ -5,12 +5,26 @@ import Marker from './Marker';
 
 const GoogleMapContainer = withGoogleMap(props => <GoogleMap {...props} ref={props.handleMapMounted} />);
 
+/**
+ * Calculates the zoom for the map object using long/lat deltas
+ * @param {*} region : an object containing the longitude and latitude deltas
+ * @returns integer
+ */
 function calcZoom(region) {
   if (!region.latitudeDelta || !region.longitudeDelta) return 13
   const avgDelta = (region.longitudeDelta + region.latitudeDelta) / 2.0;
   return Math.floor(1/avgDelta);
 }
+
 class MapView extends PureComponent {
+  static defaultProps = {
+    // Sets default location to Washington D.C. if region prop not supplied
+    region: {
+      latitude: 38.8935128,
+      longitude: -77.1546602
+    }
+  };
+
   handleMapMounted = map => (this.map = map);
 
   onDragEnd = () => {
@@ -20,17 +34,13 @@ class MapView extends PureComponent {
   };
 
   render() {
-    if (!this.props.region)
-      return (
-        <View style={styles.container}>
-          <ActivityIndicator />
-        </View>
-      );
-    const center = { 
-      lat: this.props.region.latitude, 
-      lng: this.props.region.longitude 
+    const { region } = this.props;
+
+    const center = {
+      lat: region.latitude,
+      lng: region.longitude
     };
-    const zoom = calcZoom(this.props.region);
+    const zoom = calcZoom(region);
     return (
       <View style={styles.container}>
         <GoogleMapContainer
@@ -60,3 +70,4 @@ const styles = StyleSheet.create({
 
 export { Marker };
 export default MapView;
+
