@@ -9,7 +9,7 @@ node_js:
   - lts/*
 script:
   - yarn add @blueeast/bluerain-os
-  - yarn lint && yarn test --maxWorkers=2 && yarn build
+  - yarn lint --maxWorkers=2 && yarn build
 after_success:
   - yarn report-coverage
   - test $TRAVIS_BRANCH = "master" && yarn deploy-docs

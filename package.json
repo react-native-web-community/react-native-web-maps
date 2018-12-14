@@ -25,6 +25,7 @@
     "build": "babel src --out-dir dist",
     "precommit": "lint-staged",
     "commit": "git-cz",
+    "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
     "deploy-docs": "ts-node tools/gh-pages-publish",
     "report-coverage": "cat ./coverage/lcov.info | coveralls && codecov",
@@ -50,14 +51,16 @@
     "prettier": "^1.7.3",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "semantic-release": "^15.12.5",
     "react-native-web": "^0.1.1",
-    "webpack": "^3.6.0"
+    "semantic-release": "^15.12.5",
+    "webpack": "^3.6.0",
+    "typescript": "^3.2.2"
   },
   "peerDependencies": {
     "react-native-web": "*"
   },
   "dependencies": {
-    "react-google-maps": "^7.3.0"
+    "react-google-maps": "^7.3.0",
+    "tslint": "^5.11.0"
   }
 }
