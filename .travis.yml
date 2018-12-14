@@ -1,0 +1,16 @@
+language: node_js
+cache:
+  yarn: true
+  directories:
+    - node_modules
+notifications:
+  email: false
+node_js:
+  - lts/*
+script:
+  - yarn add @blueeast/bluerain-os
+  - yarn run  lint && yarn build
+after_success:
+  - yarn report-coverage
+  - test $TRAVIS_BRANCH = "master" && yarn deploy-docs
+  - yarn semantic-release

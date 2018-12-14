@@ -20,14 +20,15 @@ class MapView extends Component {
   };
 
   render() {
+    const { style } = this.props;
     if (!this.state.center)
       return (
-        <View style={styles.container}>
+        <View style={style}>
           <ActivityIndicator />
         </View>
       );
     return (
-      <View style={styles.container}>
+      <View style={style}>
         <GoogleMapContainer
           handleMapMounted={this.handleMapMounted}
           containerElement={<div style={{ height: '100%' }} />}
@@ -47,10 +48,6 @@ class MapView extends Component {
 
 MapView.Marker = Marker;
 
-const styles = StyleSheet.create({
-  container: {
-    height: '100vh',
-  },
-});
+
 
 export default MapView;
