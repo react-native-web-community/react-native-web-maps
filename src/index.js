@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
-import { withGoogleMap, GoogleMap } from 'react-google-maps';
-import Marker from './Marker';
-import Polyline from './Polyline'
-const GoogleMapContainer = withGoogleMap(props => <GoogleMap {...props} ref={props.handleMapMounted} />);
+import React, { Component } from "react";
+import { View, ActivityIndicator, StyleSheet } from "react-native";
+import { withGoogleMap, GoogleMap } from "react-google-maps";
+import Marker from "./Marker";
+import Polyline from "./Polyline";
+const GoogleMapContainer = withGoogleMap(props => (
+  <GoogleMap {...props} ref={props.handleMapMounted} />
+));
 
 class MapView extends Component {
   constructor(props) {
     super(props);
-    this.state = { center: { lat: props.region.latitude, lng: props.region.longitude } };
+    this.state = {
+      center: { lat: props.region.latitude, lng: props.region.longitude }
+    };
   }
 
   handleMapMounted = map => (this.map = map);
@@ -16,7 +20,10 @@ class MapView extends Component {
   onDragEnd = () => {
     const center = this.map.getCenter();
     !!this.props.onRegionChangeComplete &&
-      this.props.onRegionChangeComplete({ latitude: center.lat(), longitude: center.lng() });
+      this.props.onRegionChangeComplete({
+        latitude: center.lat(),
+        longitude: center.lng()
+      });
   };
 
   render() {
@@ -31,8 +38,8 @@ class MapView extends Component {
       <View style={style}>
         <GoogleMapContainer
           handleMapMounted={this.handleMapMounted}
-          containerElement={<div style={{ height: '100%' }} />}
-          mapElement={<div style={{ height: '100%' }} />}
+          containerElement={<div style={{ height: "100%" }} />}
+          mapElement={<div style={{ height: "100%" }} />}
           center={this.state.center}
           onDragStart={!!this.props.onRegionChange && this.props.onRegionChange}
           onDragEnd={this.onDragEnd}
@@ -47,7 +54,6 @@ class MapView extends Component {
 }
 
 MapView.Marker = Marker;
-MapView.Polyline =Polyline;
-
+MapView.Polyline = Polyline;
 
 export default MapView;
