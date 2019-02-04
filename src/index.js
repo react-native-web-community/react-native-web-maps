@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import Marker from './Marker';
-
+import Polyline from './Polyline'
 const GoogleMapContainer = withGoogleMap(props => <GoogleMap {...props} ref={props.handleMapMounted} />);
 
 class MapView extends Component {
@@ -47,7 +47,7 @@ class MapView extends Component {
 }
 
 MapView.Marker = Marker;
-
+MapView.Polyline =Polyline;
 
 
 export default MapView;
