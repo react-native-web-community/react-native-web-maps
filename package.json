@@ -9,7 +9,6 @@
   },
   "author": {
     "name": "BlueEast Code",
-    "email": "",
     "url": "https://github.com/BlueEastCode/react-native-web-maps"
   },
   "files": [
@@ -24,14 +23,29 @@
   "scripts": {
     "build": "babel src --out-dir dist",
     "precommit": "lint-staged",
-    "commit": "git-cz",
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
     "deploy-docs": "ts-node tools/gh-pages-publish",
     "report-coverage": "cat ./coverage/lcov.info | coveralls && codecov",
+    "commit": "git-cz",
     "semantic-release": "semantic-release",
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "lint-staged": {
+    "{src,test}/**/*.ts": [
+      "prettier --write --use-tabs --single-quote",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    },
+    "validate-commit-msg": {
+      "types": "conventional-commit-types",
+      "helpMessage": "Use \"npm run commit\" instead, we use conventional-changelog format :) (https://github.com/commitizen/cz-cli)"
+    }
   },
   "babel": {
     "presets": [
@@ -50,11 +64,15 @@
     "babel-preset-react-native": "^4.0.0",
     "prettier": "^1.7.3",
     "react": "^16.0.0",
+    "commitizen": "^2.9.6",
+    "lint-staged": "^4.0.0",
     "react-dom": "^16.0.0",
     "react-native-web": "^0.1.1",
-    "semantic-release": "^15.12.5",
+    "tslint": "^5.4.3",
     "webpack": "^3.6.0",
-    "typescript": "^3.2.2"
+    "semantic-release": "^14.0.0",
+    "typescript": "^3.2.2",
+    "validate-commit-msg": "^2.12.2"
   },
   "peerDependencies": {
     "react-native-web": "*"
