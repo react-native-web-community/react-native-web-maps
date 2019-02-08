@@ -11,7 +11,7 @@ class MapView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      center: { lat: props.region.latitude, lng: props.region.longitude }
+      center: { lat: props.region.latitude , lng: props.region.longitude }
     };
   }
 
