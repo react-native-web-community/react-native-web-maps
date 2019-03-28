@@ -23,14 +23,18 @@ class MapView extends Component {
   };
 
   render() {
-    if (!this.state.center)
+    const style = this.props.style || styles.container;
+
+    if (!this.state.center) {
       return (
-        <View style={styles.container}>
+        <View style={style}>
           <ActivityIndicator />
         </View>
       );
+    }
+
     return (
-      <View style={styles.container}>
+      <View style={style}>
         <GoogleMapContainer
           handleMapMounted={this.handleMapMounted}
           containerElement={<div style={{ height: '100%' }} />}
@@ -52,7 +56,7 @@ MapView.Polyline = Polyline;
 
 const styles = StyleSheet.create({
   container: {
-    height: '100vh',
+    height: '100%',
   },
 });
 
