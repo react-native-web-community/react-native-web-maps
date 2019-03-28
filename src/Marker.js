@@ -3,10 +3,12 @@ import { Marker } from 'react-google-maps';
 
 class MapViewMarker extends Component {
   render() {
+    const { description, title, coordinate, ...rest } = this.props;
     return (
       <Marker
-        title={this.props.description ? `${this.props.title}\n${this.props.description}` : this.props.title}
-        position={{ lat: this.props.coordinate.latitude, lng: this.props.coordinate.longitude }}
+        {...rest}
+        title={description ? `${title}\n${description}` : title}
+        position={{ lat: coordinate.latitude, lng: coordinate.longitude }}
       />
     );
   }
