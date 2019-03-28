@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "10"
+install: yarn --frozen-lockfile
+script: yarn test
+cache:
+  yarn: true
+  directories:
+    - node_modules
+env:
+  matrix:
+    - CI=true TZ=Europe/Paris
+notifications:
+  email: false
