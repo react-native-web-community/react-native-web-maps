@@ -13,7 +13,10 @@ class MapView extends Component {
     center: null,
   };
 
-  handleMapMounted = map => (this.map = map);
+  handleMapMounted = map => {
+    this.map = map;
+    this.props.onMapReady && this.props.onMapReady();
+  };
 
   animateToRegion(coordinates) {
     this.setState({ center: { lat: coordinates.latitude, lng: coordinates.longitude } });
