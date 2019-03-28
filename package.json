@@ -22,7 +22,8 @@
   "scripts": {
     "prepublish": "yarn build",
     "build": "mkdir -p dist && babel src --out-dir dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:lint": "yarn eslint . --quiet",
+    "test": "yarn test:lint"
   },
   "babel": {
     "presets": [
@@ -39,7 +40,9 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-react-native": "^4.0.0",
-    "prettier": "^1.7.3",
+    "eslint": "^5.15.3",
+    "eslint-config-bambi": "^1.4.0",
+    "prettier": "^1.16.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-native-web": "^0.1.1",

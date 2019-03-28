@@ -3,7 +3,9 @@ import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import Marker from './Marker';
 
-const GoogleMapContainer = withGoogleMap(props => <GoogleMap {...props} ref={props.handleMapMounted} />);
+const GoogleMapContainer = withGoogleMap(props => (
+  <GoogleMap {...props} ref={props.handleMapMounted} />
+));
 
 class MapView extends Component {
   constructor(props) {
@@ -36,8 +38,7 @@ class MapView extends Component {
           onDragStart={!!this.props.onRegionChange && this.props.onRegionChange}
           onDragEnd={this.onDragEnd}
           defaultZoom={15}
-          onClick={this.props.onPress}
-        >
+          onClick={this.props.onPress}>
           {this.props.children}
         </GoogleMapContainer>
       </View>
