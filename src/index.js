@@ -9,7 +9,15 @@ const GoogleMapContainer = withGoogleMap(props => (
 ));
 
 class MapView extends Component {
+  state = {
+    center: null,
+  };
+
   handleMapMounted = map => (this.map = map);
+
+  animateToRegion(coordinates) {
+    this.setState({ center: { lat: coordinates.latitude, lng: coordinates.longitude } });
+  }
 
   onDragEnd = () => {
     const { onRegionChangeComplete } = this.props;
@@ -24,6 +32,7 @@ class MapView extends Component {
 
   render() {
     const { region, initialRegion, onRegionChange, onPress, options } = this.props;
+    const { center } = this.state;
     const style = this.props.style || styles.container;
 
     const centerProps = region
@@ -33,6 +42,8 @@ class MapView extends Component {
             lng: region.longitude,
           },
         }
+      : center
+      ? { center }
       : {
           defaultCenter: {
             lat: initialRegion.latitude,
@@ -48,7 +59,7 @@ class MapView extends Component {
           mapElement={<div style={{ height: '100%' }} />}
           {...centerProps}
           onDragStart={onRegionChange}
-          onDragEnd={this.onDragEnd}
+          onIdle={this.onDragEnd}
           defaultZoom={15}
           onClick={onPress}
           options={options}>
