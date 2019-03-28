@@ -14,7 +14,7 @@ storiesOf('MapView', module)
   .add('onRegionChangeComplete', () => (
     <View style={styles.container}>
       <MapView
-        region={{ latitude: 48.86, longitude: 2.34 }}
+        initialRegion={{ latitude: 48.86, longitude: 2.34 }}
         onRegionChangeComplete={action('onRegionChangeComplete toggled')}
       />
     </View>
@@ -22,6 +22,21 @@ storiesOf('MapView', module)
   .add('onPress', () => (
     <View style={styles.container}>
       <MapView region={{ latitude: 48.86, longitude: 2.34 }} onPress={action('onPress toggled')} />
+    </View>
+  ))
+  .add('options', () => (
+    <View style={styles.container}>
+      <MapView
+        initialRegion={{ latitude: 48.86, longitude: 2.34 }}
+        options={{
+          zoomControlOptions: {
+            position: window.google.maps.ControlPosition.RIGHT_CENTER,
+          },
+          mapTypeControl: false,
+          streetViewControl: false,
+          fullscreenControl: false,
+        }}
+      />
     </View>
   ));
 
