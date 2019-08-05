@@ -26,15 +26,18 @@ class MapView extends Component {
     const { onRegionChangeComplete } = this.props;
     if (this.map && onRegionChangeComplete) {
       const center = this.map.getCenter();
+      const bounds = this.map.getBounds();
       onRegionChangeComplete({
         latitude: center.lat(),
         longitude: center.lng(),
+        latitudeDelta: bounds.getNorthEast().lat() - bounds.getSouthWest().lat(),
+        longitudeDelta: bounds.getNorthEast().lng() - bounds.getSouthWest().lng(),
       });
     }
   };
 
   render() {
-    const { region, initialRegion, onRegionChange, onPress, options } = this.props;
+    const { region, initialRegion, onPress, ...otherProps } = this.props;
     const { center } = this.state;
     const style = this.props.style || styles.container;
 
@@ -57,15 +60,14 @@ class MapView extends Component {
     return (
       <View style={style}>
         <GoogleMapContainer
+          {...otherProps}
+          {...centerProps}
           handleMapMounted={this.handleMapMounted}
           containerElement={<div style={{ height: '100%' }} />}
           mapElement={<div style={{ height: '100%' }} />}
-          {...centerProps}
-          onDragStart={onRegionChange}
           onIdle={this.onDragEnd}
           defaultZoom={15}
-          onClick={onPress}
-          options={options}>
+          onClick={onPress}>
           {this.props.children}
         </GoogleMapContainer>
       </View>
