@@ -44,9 +44,10 @@ storiesOf('Marker', module).add('basic', () => (
   <View style={styles.container}>
     <MapView region={{ latitude: 48.88, longitude: 2.32 }}>
       <MapView.Marker
-        title="BAM"
-        description="Shape the future of mobile with us"
+        title='BAM'
+        description='Shape the future of mobile with us'
         coordinate={{ latitude: 48.8828463, longitude: 2.3229091 }}
+        onPress={action('onPresss')}
       />
     </MapView>
   </View>
