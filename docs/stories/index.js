@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import MapView from 'react-native-maps';
 
 import { storiesOf } from '@storybook/react';
@@ -40,18 +40,39 @@ storiesOf('MapView', module)
     </View>
   ));
 
-storiesOf('Marker', module).add('basic', () => (
-  <View style={styles.container}>
-    <MapView region={{ latitude: 48.88, longitude: 2.32 }}>
-      <MapView.Marker
-        title='BAM'
-        description='Shape the future of mobile with us'
-        coordinate={{ latitude: 48.8828463, longitude: 2.3229091 }}
-        onPress={action('onPresss')}
-      />
-    </MapView>
-  </View>
-));
+storiesOf('Marker', module)
+  .add('basic', () => (
+    <View style={styles.container}>
+      <MapView region={{ latitude: 48.88, longitude: 2.32 }}>
+        <MapView.Marker
+          title="BAM"
+          description="Shape the future of mobile with us"
+          coordinate={{ latitude: 48.8828463, longitude: 2.3229091 }}
+          onPress={action('onPresss')}
+        />
+      </MapView>
+    </View>
+  ))
+  .add('Callout', () => (
+    <View style={styles.container}>
+      <MapView region={{ latitude: 48.88, longitude: 2.32 }}>
+        <MapView.Marker
+          title="BAM"
+          ref={marker => (this.marker = marker)}
+          description="Shape the future of mobile with us"
+          coordinate={{ latitude: 48.8828463, longitude: 2.3229091 }}
+          onPress={() => {
+            this.marker.showCallout();
+          }}>
+          <MapView.Callout onPress={action('onPress callout')}>
+            <View style={{ padding: 10 }}>
+              <Text>Paris</Text>
+            </View>
+          </MapView.Callout>
+        </MapView.Marker>
+      </MapView>
+    </View>
+  ));
 
 const styles = StyleSheet.create({
   container: {
