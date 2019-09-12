@@ -27,7 +27,12 @@ storiesOf('MapView', module)
   .add('options', () => (
     <View style={styles.container}>
       <MapView
-        initialRegion={{ latitude: 48.86, longitude: 2.34 }}
+        initialRegion={{
+          latitude: 48.86,
+          longitude: 2.34,
+          latitudeDelta: 0.1,
+          longitudeDelta: 0.1,
+        }}
         options={{
           zoomControlOptions: {
             position: window.google.maps.ControlPosition.RIGHT_CENTER,

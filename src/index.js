@@ -54,7 +54,12 @@ class MapView extends Component {
             lng: initialRegion.longitude,
           },
         };
-
+    const zoom =
+      region && region.latitudeDelta
+        ? Math.round(Math.log(360 / region.latitudeDelta) / Math.LN2)
+        : initialRegion && initialRegion.latitudeDelta
+        ? Math.round(Math.log(360 / initialRegion.latitudeDelta) / Math.LN2)
+        : 15;
     return (
       <View style={style}>
         <GoogleMapContainer
@@ -64,7 +69,7 @@ class MapView extends Component {
           {...centerProps}
           onDragStart={onRegionChange}
           onIdle={this.onDragEnd}
-          defaultZoom={15}
+          defaultZoom={zoom}
           onClick={onPress}
           options={options}>
           {this.props.children}
