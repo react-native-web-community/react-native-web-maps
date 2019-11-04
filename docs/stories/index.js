@@ -68,8 +68,10 @@ storiesOf('Marker', module)
           description="Shape the future of mobile with us"
           coordinate={{ latitude: 48.8828463, longitude: 2.3 }}
           onPress={() => {
+            console.log(this.map.getCamera());
+            const zoom = this.map.getCamera().zoom === 20 ? 15 : 20;
             this.map.animateCamera({
-              zoom: 20,
+              zoom,
               center: {
                 lat: 48.8828463,
                 lng: 2.3,

@@ -19,6 +19,14 @@ class MapView extends Component {
     this.props.onMapReady && this.props.onMapReady();
   };
 
+  getCamera = () => {
+    return {
+      zoom: this.map.getZoom(),
+      center: this.map.getCenter(),
+      heading: this.map.getHeading(),
+    };
+  };
+
   animateCamera(camera) {
     this.setState({ zoom: camera.zoom });
     this.setState({ center: camera.center });
@@ -70,12 +78,12 @@ class MapView extends Component {
     return (
       <View style={style}>
         <GoogleMapContainer
-          ref={map => (this.map = map)}
+          ref={mapContainer => (this.mapContainer = mapContainer)}
           handleMapMounted={this.handleMapMounted}
           containerElement={<div style={{ height: '100%' }} />}
           mapElement={<div style={{ height: '100%' }} />}
           onZoomChanged={() => {
-            this.setState({ zoom: this.map.getZoom });
+            this.setState({ zoom: this.mapContainer.getZoom });
           }}
           {...googleMapProps}
           onDragStart={onRegionChange}
