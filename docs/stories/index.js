@@ -8,7 +8,8 @@ import { action } from '@storybook/addon-actions';
 storiesOf('MapView', module)
   .add('basic', () => (
     <View style={styles.container}>
-      <MapView region={{ latitude: 48.86, longitude: 2.34 }} />
+      <MapView defaultZoom={15} region={{ latitude: 48.86, longitude: 2.34 }} />
+      <MapView defaultZoom={10} region={{ latitude: 48.86, longitude: 2.34 }} />
     </View>
   ))
   .add('onRegionChangeComplete', () => (
@@ -48,26 +49,47 @@ storiesOf('MapView', module)
 storiesOf('Marker', module)
   .add('basic', () => (
     <View style={styles.container}>
-      <MapView region={{ latitude: 48.88, longitude: 2.32 }}>
+      <MapView ref={map => (this.map = map)} region={{ latitude: 48.88, longitude: 2.32 }}>
         <MapView.Marker
           title="BAM"
           description="Shape the future of mobile with us"
           coordinate={{ latitude: 48.8828463, longitude: 2.3229091 }}
-          onPress={action('onPresss')}
+          onPress={() => {
+            this.map.animateToRegion({
+              latitude: 48.8828463,
+              longitude: 2.3229091,
+              latitudeDelta: 0.1,
+              longitudeDelta: 0.1,
+            });
+          }}
+        />
+        <MapView.Marker
+          title="BAM"
+          description="Shape the future of mobile with us"
+          coordinate={{ latitude: 48.8828463, longitude: 2.3 }}
+          onPress={() => {
+            this.map.animateCamera({
+              zoom: 20,
+              center: {
+                lat: 48.8828463,
+                lng: 2.3,
+              },
+            });
+          }}
         />
       </MapView>
     </View>
   ))
   .add('Callout', () => (
     <View style={styles.container}>
-      <MapView region={{ latitude: 48.88, longitude: 2.32 }}>
+      <MapView ref={map => (this.map = map)} region={{ latitude: 48.88, longitude: 2.32 }}>
         <MapView.Marker
           title="BAM"
           ref={marker => (this.marker = marker)}
           description="Shape the future of mobile with us"
           coordinate={{ latitude: 48.8828463, longitude: 2.3229091 }}
           onPress={() => {
-            this.marker.showCallout();
+            this.marker1.showCallout();
           }}>
           <MapView.Callout onPress={action('onPress callout')}>
             <View style={{ padding: 10 }}>

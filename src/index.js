@@ -19,6 +19,11 @@ class MapView extends Component {
     this.props.onMapReady && this.props.onMapReady();
   };
 
+  animateCamera(camera) {
+    this.setState({ zoom: camera.zoom });
+    this.setState({ center: camera.center });
+  }
+
   animateToRegion(coordinates) {
     this.setState({ center: { lat: coordinates.latitude, lng: coordinates.longitude } });
   }
@@ -35,19 +40,19 @@ class MapView extends Component {
   };
 
   render() {
-    const { region, initialRegion, onRegionChange, onPress, options } = this.props;
+    const { region, initialRegion, onRegionChange, onPress, options, defaultZoom } = this.props;
     const { center } = this.state;
     const style = this.props.style || styles.container;
 
-    const centerProps = region
+    const googleMapProps = center
+      ? { center }
+      : region
       ? {
           center: {
             lat: region.latitude,
             lng: region.longitude,
           },
         }
-      : center
-      ? { center }
       : {
           defaultCenter: {
             lat: initialRegion.latitude,
@@ -55,18 +60,24 @@ class MapView extends Component {
           },
         };
     const zoom =
-      region && region.latitudeDelta
+      defaultZoom ||
+      (region && region.latitudeDelta
         ? Math.round(Math.log(360 / region.latitudeDelta) / Math.LN2)
         : initialRegion && initialRegion.latitudeDelta
         ? Math.round(Math.log(360 / initialRegion.latitudeDelta) / Math.LN2)
-        : 15;
+        : 15);
+    googleMapProps['zoom'] = this.state.zoom ? this.state.zoom : zoom;
     return (
       <View style={style}>
         <GoogleMapContainer
+          ref={map => (this.map = map)}
           handleMapMounted={this.handleMapMounted}
           containerElement={<div style={{ height: '100%' }} />}
           mapElement={<div style={{ height: '100%' }} />}
-          {...centerProps}
+          onZoomChanged={() => {
+            this.setState({ zoom: this.map.getZoom });
+          }}
+          {...googleMapProps}
           onDragStart={onRegionChange}
           onIdle={this.onDragEnd}
           defaultZoom={zoom}
