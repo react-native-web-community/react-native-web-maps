@@ -33,7 +33,9 @@ class MapView extends Component {
   }
 
   animateToRegion(coordinates) {
-    this.setState({ center: { lat: coordinates.latitude, lng: coordinates.longitude } });
+    this.setState({
+      center: { lat: coordinates.latitude, lng: coordinates.longitude },
+    });
   }
 
   onDragEnd = () => {
@@ -78,7 +80,6 @@ class MapView extends Component {
     return (
       <View style={style}>
         <GoogleMapContainer
-          ref={mapContainer => (this.mapContainer = mapContainer)}
           handleMapMounted={this.handleMapMounted}
           containerElement={<div style={{ height: '100%' }} />}
           mapElement={<div style={{ height: '100%' }} />}
