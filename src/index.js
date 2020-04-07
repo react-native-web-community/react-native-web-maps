@@ -62,7 +62,7 @@ class MapView extends Component {
           mapElement={<div style={{ height: '100%' }} />}
           {...centerProps}
           onDragStart={onRegionChange}
-          onIdle={this.onDragEnd}
+          onDragEnd={this.onDragEnd}
           defaultZoom={15}
           onClick={onPress}
           options={options}>
