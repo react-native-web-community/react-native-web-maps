@@ -1,6 +1,6 @@
 {
   "name": "react-native-web-maps",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "React Native for Web implementation of react-native-maps",
   "main": "dist/index.js",
   "main-es": "src/index.js",
