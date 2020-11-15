@@ -38,14 +38,31 @@ class MapView extends Component {
     });
   }
 
+  _getCurrentRegion = () => {
+    const center = this.map.getCenter();
+    const bounds = this.map.getBounds();
+
+    return {
+      latitude: center.lat(),
+      longitude: center.lng(),
+      latitudeDelta: Math.abs(bounds.getSouthWest().lat() - bounds.getNorthEast().lat()),
+      longitudeDelta: Math.abs(bounds.getSouthWest().lng() - bounds.getNorthEast().lng()),
+    };
+  }
+
+  onDragStart = () => {
+    const { onRegionChange } = this.props;
+
+    if (this.map && onRegionChange) {
+      onRegionChange(this._getCurrentRegion());
+    }
+  }
+
   onDragEnd = () => {
     const { onRegionChangeComplete } = this.props;
+
     if (this.map && onRegionChangeComplete) {
-      const center = this.map.getCenter();
-      onRegionChangeComplete({
-        latitude: center.lat(),
-        longitude: center.lng(),
-      });
+      onRegionChangeComplete(this._getCurrentRegion());
     }
   };
 
@@ -87,7 +104,7 @@ class MapView extends Component {
             this.setState({ zoom: this.map.getZoom() });
           }}
           {...googleMapProps}
-          onDragStart={onRegionChange}
+          onDragStart={this.onDragStart}
           onIdle={this.onDragEnd}
           defaultZoom={zoom}
           onClick={onPress}
