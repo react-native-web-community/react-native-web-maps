@@ -10,6 +10,13 @@ const GoogleMapContainer = withGoogleMap(props => (
   <GoogleMap {...props} ref={props.handleMapMounted} />
 ));
 
+function googleToReact(point) {
+  return {
+    latitude: point.lat(),
+    longitude: point.lng(),
+  };
+}
+
 class MapView extends Component {
   state = {
     center: null,
@@ -39,14 +46,19 @@ class MapView extends Component {
     });
   }
 
+  async getMapBoundaries() {
+    const bounds = this.map.getBounds();
+    return {
+      northEast: googleToReact(bounds.getNorthEast()),
+      southWest: googleToReact(bounds.getSouthWest()),
+    };
+  }
+
   onDragEnd = () => {
     const { onRegionChangeComplete } = this.props;
     if (this.map && onRegionChangeComplete) {
       const center = this.map.getCenter();
-      onRegionChangeComplete({
-        latitude: center.lat(),
-        longitude: center.lng(),
-      });
+      onRegionChangeComplete(googleToReact(center));
     }
   };
 
