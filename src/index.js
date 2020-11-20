@@ -116,7 +116,7 @@ MapView.Marker = Marker;
 MapView.Polyline = Polyline;
 MapView.Callout = Callout;
 MapView.Geojson = Geojson;
-export { Geojson };
+export { Marker, Polyline, Callout, Geojson };
 
 const styles = StyleSheet.create({
   container: {
