@@ -3,41 +3,22 @@ import MapView from './index';
 
 export const makeOverlays = features => {
   const points = features
-    .filter(
-      f =>
-        f.geometry &&
-        (f.geometry.type === 'Point' || f.geometry.type === 'MultiPoint')
-    )
-    .map(feature =>
-      makeCoordinates(feature).map(coordinates =>
-        makeOverlay(coordinates, feature)
-      )
-    )
+    .filter(f => f.geometry && (f.geometry.type === 'Point' || f.geometry.type === 'MultiPoint'))
+    .map(feature => makeCoordinates(feature).map(coordinates => makeOverlay(coordinates, feature)))
     .reduce(flatten, [])
     .map(overlay => ({ ...overlay, type: 'point' }));
 
   const lines = features
     .filter(
-      f =>
-        f.geometry &&
-        (f.geometry.type === 'LineString' ||
-          f.geometry.type === 'MultiLineString')
+      f => f.geometry && (f.geometry.type === 'LineString' || f.geometry.type === 'MultiLineString')
     )
-    .map(feature =>
-      makeCoordinates(feature).map(coordinates =>
-        makeOverlay(coordinates, feature)
-      )
-    )
+    .map(feature => makeCoordinates(feature).map(coordinates => makeOverlay(coordinates, feature)))
     .reduce(flatten, [])
     .map(overlay => ({ ...overlay, type: 'polyline' }));
 
   const multipolygons = features
     .filter(f => f.geometry && f.geometry.type === 'MultiPolygon')
-    .map(feature =>
-      makeCoordinates(feature).map(coordinates =>
-        makeOverlay(coordinates, feature)
-      )
-    )
+    .map(feature => makeCoordinates(feature).map(coordinates => makeOverlay(coordinates, feature)))
     .reduce(flatten, []);
 
   const polygons = features
@@ -56,10 +37,7 @@ const makeOverlay = (coordinates, feature) => {
   let overlay = {
     feature,
   };
-  if (
-    feature.geometry.type === 'Polygon' ||
-    feature.geometry.type === 'MultiPolygon'
-  ) {
+  if (feature.geometry.type === 'Polygon' || feature.geometry.type === 'MultiPolygon') {
     overlay.coordinates = coordinates[0];
     if (coordinates.length > 1) {
       overlay.holes = coordinates.slice(1);
