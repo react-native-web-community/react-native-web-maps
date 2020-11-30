@@ -4,10 +4,25 @@ import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import Marker from './Marker';
 import Polyline from './Polyline';
 import Callout from './Callout';
+import Geojson from './Geojson';
 
 const GoogleMapContainer = withGoogleMap(props => (
   <GoogleMap {...props} ref={props.handleMapMounted} />
 ));
+
+function googleToReact(point) {
+  return {
+    latitude: point.lat(),
+    longitude: point.lng(),
+  };
+}
+
+function reactToGoogle(point) {
+  return {
+    lat: point.latitude,
+    lng: point.longitude,
+  };
+}
 
 class MapView extends Component {
   state = {
@@ -29,23 +44,28 @@ class MapView extends Component {
 
   animateCamera(camera) {
     this.setState({ zoom: camera.zoom });
-    this.setState({ center: camera.center });
+    this.setState({ center: reactToGoogle(camera.center) });
   }
 
   animateToRegion(coordinates) {
     this.setState({
-      center: { lat: coordinates.latitude, lng: coordinates.longitude },
+      center: reactToGoogle(coordinates),
     });
+  }
+
+  async getMapBoundaries() {
+    const bounds = this.map.getBounds();
+    return {
+      northEast: googleToReact(bounds.getNorthEast()),
+      southWest: googleToReact(bounds.getSouthWest()),
+    };
   }
 
   onDragEnd = () => {
     const { onRegionChangeComplete } = this.props;
     if (this.map && onRegionChangeComplete) {
       const center = this.map.getCenter();
-      onRegionChangeComplete({
-        latitude: center.lat(),
-        longitude: center.lng(),
-      });
+      onRegionChangeComplete(googleToReact(center));
     }
   };
 
@@ -58,16 +78,10 @@ class MapView extends Component {
       ? { center }
       : region
       ? {
-          center: {
-            lat: region.latitude,
-            lng: region.longitude,
-          },
+          center: reactToGoogle(region),
         }
       : {
-          defaultCenter: {
-            lat: initialRegion.latitude,
-            lng: initialRegion.longitude,
-          },
+          defaultCenter: reactToGoogle(initialRegion),
         };
     const zoom =
       defaultZoom ||
@@ -102,6 +116,8 @@ class MapView extends Component {
 MapView.Marker = Marker;
 MapView.Polyline = Polyline;
 MapView.Callout = Callout;
+MapView.Geojson = Geojson;
+export { Marker, Polyline, Callout, Geojson };
 
 const styles = StyleSheet.create({
   container: {
