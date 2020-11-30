@@ -17,6 +17,13 @@ function googleToReact(point) {
   };
 }
 
+function reactToGoogle(point) {
+  return {
+    lat: point.latitude,
+    lng: point.longitude,
+  };
+}
+
 class MapView extends Component {
   state = {
     center: null,
@@ -37,12 +44,12 @@ class MapView extends Component {
 
   animateCamera(camera) {
     this.setState({ zoom: camera.zoom });
-    this.setState({ center: camera.center });
+    this.setState({ center: reactToGoogle(camera.center) });
   }
 
   animateToRegion(coordinates) {
     this.setState({
-      center: { lat: coordinates.latitude, lng: coordinates.longitude },
+      center: reactToGoogle(coordinates),
     });
   }
 
@@ -71,16 +78,10 @@ class MapView extends Component {
       ? { center }
       : region
       ? {
-          center: {
-            lat: region.latitude,
-            lng: region.longitude,
-          },
+          center: reactToGoogle(region),
         }
       : {
-          defaultCenter: {
-            lat: initialRegion.latitude,
-            lng: initialRegion.longitude,
-          },
+          defaultCenter: reactToGoogle(initialRegion),
         };
     const zoom =
       defaultZoom ||
