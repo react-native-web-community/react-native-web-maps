@@ -103,6 +103,12 @@ MapView.Marker = Marker;
 MapView.Polyline = Polyline;
 MapView.Callout = Callout;
 
+export {
+  Marker,
+  Polyline,
+  Callout
+}
+
 const styles = StyleSheet.create({
   container: {
     height: '100%',
