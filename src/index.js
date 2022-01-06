@@ -37,6 +37,17 @@ class MapView extends Component {
       center: { lat: coordinates.latitude, lng: coordinates.longitude },
     });
   }
+  
+  fitToCoordinates(coordinates) {
+    var bounds = new window.google.maps.LatLngBounds();
+    for (var i = 0; i < coordinates.length; i++) {
+      bounds.extend(
+        new window.google.maps.LatLng(coordinates[i].latitude, coordinates[i].longitude)
+      );
+    }
+
+    this.map.fitBounds(bounds);
+  }
 
   onDragEnd = () => {
     const { onRegionChangeComplete } = this.props;
